@@ -4,18 +4,29 @@ const refs = {
     btnStop: document.querySelector('button[data-stop]'),
 }
 
-console.log(refs.btnStart);
+let intervalId = null;
 
-refs.btnStart.addEventListener('click', onColorChange);
+refs.btnStart.addEventListener('click', onColorStart);
+refs.btnStop.addEventListener('click', onColorStop);
 
-function onColorChange(event) {
-    const intervalId = setInterval(setBodyColor, 1000);
+function onColorStart(event) {
+    if (intervalId) {
+        refs.btnStart.removeEventListener('click', onColorStart);
+    }
+    intervalId = setInterval(setBodyColor, 1000);
+ 
     function setBodyColor() {
         refs.body.style.backgroundColor = getRandomHexColor();
     }
     
 }
 
+function onColorStop(event) {
+    clearInterval(intervalId);
+}
+
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, 0)}`;
 }
+
+
