@@ -9,6 +9,8 @@ let intervalId = null;
 refs.btnStart.addEventListener('click', onColorStart);
 refs.btnStop.addEventListener('click', onColorStop);
 
+// getting random color for body by condition
+
 function onColorStart(event) {
     if (intervalId) {
         refs.btnStart.removeEventListener('click', onColorStart);
@@ -20,6 +22,8 @@ function onColorStart(event) {
     }
     
 }
+
+// halting the color function 
 
 function onColorStop(event) {
     clearInterval(intervalId);
