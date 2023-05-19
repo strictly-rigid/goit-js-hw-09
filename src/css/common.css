@@ -16,3 +16,17 @@ img {
   display: block;
   max-width: 100%;
 }
+
+span.value {
+  color: rgb(38, 193, 240);
+  font-size: 40px;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+}
+
+.timer .field {
+  margin-right: 40px;
+}
