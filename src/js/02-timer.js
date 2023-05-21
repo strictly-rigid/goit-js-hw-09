@@ -15,7 +15,7 @@ const refsTimeEl = {
     seconds: document.querySelector('span[data-seconds]'),
 }
 
- refs.btnStart.disabled = true;
+refs.btnStart.disabled = true;
 
 
 // options for flatpickr function
@@ -27,20 +27,21 @@ const options = {
 
   // function that allows to choose a date and adds eventListener to the button
   onClose(selectedDates) {
-      const selectedDate = selectedDates[0];
+      let selectedDate = selectedDates[0];
       const currentTime = new Date();
      
         if (selectedDate < currentTime) {
       window.alert("Please choose a date in the future");
         } else {
           refs.btnStart.disabled = false;
-          refs.btnStart.addEventListener('click', () => { startCountdown(selectedDate, refsTimeEl) })
-    }
+             }
   },
 };
 
 // initializing flatpickr
 const fp = flatpickr(refs.input, options);  
+
+
 
 // adding 0 if a number is single-digit
 function addLeadingZero(value) {
@@ -50,7 +51,14 @@ function addLeadingZero(value) {
 
 // function formatting time and setting countdown
 
+ refs.btnStart.addEventListener('click', () => {
+    startCountdown(selectedDate, refsTimeEl);
+    refs.btnStart.disabled = true;
+    fp.clear();
+        })
+
 function startCountdown(selectedDate, refsTimeEl) {
+  refs.btnStart.disabled = true;
   const {days, hours, minutes, seconds} = refsTimeEl;  
   const countdownInterval = setInterval(() => {
     const timeRemain = selectedDate.getTime() - Date.now();
@@ -68,4 +76,6 @@ function startCountdown(selectedDate, refsTimeEl) {
         seconds.textContent = addLeadingZero(secondsMS, 2);
              }
   }, 1000);
+  
 }
+

@@ -34,7 +34,10 @@ const onFormSubmit = (event) => {
               console.log(`❌ Rejected promise ${position} in ${delay}ms`);
         });
         delayNum += Number(step.value);
-      }
+  }
+  
+  refs.form.reset();
+
 };
 
 refs.form.addEventListener('submit', onFormSubmit)
